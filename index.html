@@ -5,31 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Game</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="game-container">
-        <h1>Rock Paper Scissors</h1>
-        <p>Choose your move:</p>
+        <h1 class="game-title">Rock Paper Scissors</h1>
         
-        <div class="choices">
-            <button id="rock">✊ Rock</button>
-            <button id="paper">✋ Paper</button>
-            <button id="scissors">✌️ Scissors</button>
+        <div class="game-arena">
+            <div class="player-side">
+                <div class="player-label">YOU</div>
+                <div id="player-choice" class="choice-display">
+                    <i class="fas fa-question"></i>
+                </div>
+            </div>
+            
+            <div class="versus">VS</div>
+            
+            <div class="computer-side">
+                <div class="computer-label">COMPUTER</div>
+                <div id="computer-choice" class="choice-display">
+                    <i class="fas fa-question"></i>
+                </div>
+            </div>
         </div>
         
         <div id="result" class="result">
             <p>Make your choice to start the game!</p>
         </div>
         
-        <div class="score">
-            <p>Player: <span id="player-score">0</span></p>
-            <p>Computer: <span id="computer-score">0</span></p>
+        <p class="choice-prompt">Choose your move:</p>
+        <div class="choices">
+            <button id="rock" class="choice-btn">
+                <i class="fas fa-hand-rock"></i>
+                <span>Rock</span>
+            </button>
+            <button id="paper" class="choice-btn">
+                <i class="fas fa-hand-paper"></i>
+                <span>Paper</span>
+            </button>
+            <button id="scissors" class="choice-btn">
+                <i class="fas fa-hand-scissors"></i>
+                <span>Scissors</span>
+            </button>
         </div>
         
-        <button id="reset">Reset Game</button>
+        <div class="score-board">
+            <div class="score player-score">
+                <div class="score-label">Player</div>
+                <div id="player-score" class="score-value">0</div>
+            </div>
+            <div class="score computer-score">
+                <div class="score-label">Computer</div>
+                <div id="computer-score" class="score-value">0</div>
+            </div>
+        </div>
+        
+        <button id="reset" class="reset-btn">
+            <i class="fas fa-redo-alt"></i> Reset Game
+        </button>
         
         <div class="history-section">
-            <h2>Game History</h2>
+            <h2><i class="fas fa-history"></i> Game History</h2>
             <div id="history-list" class="history-list">
                 <!-- History items will be added here -->
             </div>
