@@ -6,10 +6,12 @@ const resultDiv = document.getElementById('result');
 const playerScoreSpan = document.getElementById('player-score');
 const computerScoreSpan = document.getElementById('computer-score');
 const resetBtn = document.getElementById('reset');
+const historyList = document.getElementById('history-list');
 
-// Initialize scores
+// Initialize scores and history
 let playerScore = 0;
 let computerScore = 0;
+let gameHistory = [];
 
 // Add event listeners to buttons
 rockBtn.addEventListener('click', () => playGame('rock'));
@@ -69,6 +71,28 @@ function playGame(playerChoice) {
     }
     
     resultDiv.innerHTML = resultMessage;
+
+    // Add to history
+    const historyItem = {
+        playerChoice: choiceEmojis[playerChoice],
+        computerChoice: choiceEmojis[computerChoice],
+        winner: winner,
+        timestamp: new Date().toLocaleTimeString()
+    };
+    
+    gameHistory.unshift(historyItem); // Add to beginning of array
+    updateHistoryDisplay();
+}
+
+// Function to update history display
+function updateHistoryDisplay() {
+    historyList.innerHTML = gameHistory.map(item => `
+        <div class="history-item ${item.winner}">
+            <div>${item.playerChoice} vs ${item.computerChoice}</div>
+            <div>${item.winner === 'player' ? 'You won!' : item.winner === 'computer' ? 'Computer won!' : 'Draw!'}</div>
+            <div class="timestamp">${item.timestamp}</div>
+        </div>
+    `).join('');
 }
 
 // Function to reset the game
@@ -78,4 +102,6 @@ function resetGame() {
     playerScoreSpan.textContent = '0';
     computerScoreSpan.textContent = '0';
     resultDiv.innerHTML = '<p>Make your choice to start the game!</p>';
+    gameHistory = [];
+    updateHistoryDisplay();
 }
